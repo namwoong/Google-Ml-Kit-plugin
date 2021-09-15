@@ -12,8 +12,11 @@ import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
 import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.TextRecognizerOptionsInterface;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 import com.google_ml_kit.ApiDetectorInterface;
+import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,14 +40,12 @@ public class TextDetector implements ApiDetectorInterface {
         this.context = context;
     }
 
-    @Override
     public List<String> getMethodsKeys() {
         return new ArrayList<>(
                 Arrays.asList(START,
                         CLOSE));
     }
 
-    @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         String method = call.method;
         if (method.equals(START)) {
@@ -62,7 +63,9 @@ public class TextDetector implements ApiDetectorInterface {
         InputImage inputImage = InputImageConverter.getInputImageFromData(imageData, context, result);
         if (inputImage == null) return;
 
-        if(textRecognizer == null) textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+        //if(textRecognizer == null) textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+        KoreanTextRecognizerOptions.Builder koreanTextRecognizerOptionsBuilder = new KoreanTextRecognizerOptions.Builder();
+        if(textRecognizer == null) textRecognizer = TextRecognition.getClient(koreanTextRecognizerOptionsBuilder.build());
 
         textRecognizer.process(inputImage)
                 .addOnSuccessListener(new OnSuccessListener<Text>() {
