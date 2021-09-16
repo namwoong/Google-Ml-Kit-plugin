@@ -7,4 +7,7 @@
 * TODO: Initial release
 
 ## 0.0.6
-* Fix examples 
+* Fix examples
+
+## 0.0.7
+* Fix README
