@@ -1,4 +1,4 @@
-import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:google_ml_kit/google_ml_kit_for_korean.dart';
 import 'package:flutter/material.dart';
 
 class LanguageIdentifierView extends StatefulWidget {

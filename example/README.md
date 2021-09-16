@@ -1,6 +1,6 @@
 # google_ml_kit_example
 
-Demonstrates how to use the google_ml_kit plugin.
+Demonstrates how to use the google_ml_kit plugin. It is still under developing and testing.
 
 ## Getting Started
 
