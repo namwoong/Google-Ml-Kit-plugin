@@ -1,6 +1,6 @@
 name: google_ml_kit_for_korean
 description: A Flutter plugin to implement google's standalone ml kit made for mobile platform. Text recognition for Korean has been added from Google-Ml-Kit-plugin v0.7.2
-version: 0.0.7
+version: 0.0.8
 homepage: https://github.com/namwoong/Google-Ml-Kit-plugin
 
 environment:

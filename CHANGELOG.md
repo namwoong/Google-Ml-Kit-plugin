@@ -11,3 +11,6 @@
 
 ## 0.0.7
 * Fix README
+
+## 0.0.8
+* Fix IOS issues

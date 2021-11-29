@@ -3,13 +3,13 @@
 # Run `pod lib lint google_ml_kit.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'google_ml_kit'
-  s.version          = '0.6.0'
+  s.name             = 'google_ml_kit_for_korean'
+  s.version          = '0.0.8'
   s.summary          = 'Flutter Plugin for ML Kit'
   s.description      = <<-DESC
 flutter plugin for google ml kit
                        DESC
-  s.homepage         = 'https://github.com/bharat-biradar/Google-Ml-Kit-plugin'
+  s.homepage         = 'https://github.com/namwoong/Google-Ml-Kit-plugin'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
