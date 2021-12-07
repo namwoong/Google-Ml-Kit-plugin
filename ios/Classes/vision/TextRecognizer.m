@@ -1,6 +1,7 @@
 
 #import "GoogleMlKitPlugin.h"
 #import <MLKitTextRecognition/MLKitTextRecognition.h>
+#import <MLKitTextRecognitionKorean/MLKKoreanTextRecognizerOptions.h>
 #import <MLKitTextRecognitionCommon/MLKText.h>
 #import <MLKitTextRecognitionCommon/MLKTextBlock.h>
 #import <MLKitTextRecognitionCommon/MLKTextLine.h>
@@ -11,6 +12,7 @@
 #define closeTextDetector @"vision#closeTextDetector"
 
 @implementation TextRecognizer {
+    MLKKoreanTextRecognizerOptions *koreanOptions;
     MLKTextRecognizer *textRecognizer;
 }
 
@@ -29,8 +31,10 @@
 }
 
 - (void)handleDetection:(FlutterMethodCall *)call result:(FlutterResult)result {
+    koreanOptions = [[MLKKoreanTextRecognizerOptions alloc] init];
+
     MLKVisionImage *image = [MLKVisionImage visionImageFromData:call.arguments[@"imageData"]];
-    textRecognizer = [MLKTextRecognizer textRecognizer];
+    textRecognizer = [MLKTextRecognizer textRecognizerWithOptions:koreanOptions];
     [textRecognizer processImage:image
                       completion:^(MLKText *_Nullable visionText, NSError *_Nullable error) {
         if (error) {

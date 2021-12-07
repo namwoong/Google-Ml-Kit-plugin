@@ -18,3 +18,6 @@
 ## 0.0.9
 * Support TextDetector V2 for IOS
 * IOS 11 or higher  
+
+## 0.0.10
+* TextRecognizer is working on TextDetectorV2
