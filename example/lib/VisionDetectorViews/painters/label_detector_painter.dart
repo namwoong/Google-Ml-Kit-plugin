@@ -1,7 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:google_ml_kit/google_ml_kit_for_korean.dart';
+import 'package:google_ml_kit_for_korean/google_ml_kit_for_korean.dart';
 
 class LabelDetectorPainter extends CustomPainter {
   LabelDetectorPainter(this.labels);

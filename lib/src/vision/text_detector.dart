@@ -31,6 +31,37 @@ class TextDetector {
   }
 }
 
+enum TextRecognitionOptions { DEFAULT, CHINESE, DEVANAGIRI, JAPANESE, KOREAN }
+
+class TextDetectorV2 {
+  TextDetectorV2._();
+
+  bool _hasBeenOpened = false;
+  bool _isClosed = false;
+
+  /// Function that takes [InputImage] processes it and returns a [RecognisedText] object.
+  Future<RecognisedText> processImage(InputImage inputImage,
+      {TextRecognitionOptions script = TextRecognitionOptions.DEFAULT}) async {
+    _hasBeenOpened = true;
+    final result = await Vision.channel.invokeMethod(
+        'vision#startTextDetectorV2', <String, dynamic>{
+      'imageData': inputImage._getImageData(),
+      'language': script.index
+    });
+
+    final recognisedText = RecognisedText.fromMap(result);
+
+    return recognisedText;
+  }
+
+  Future<void> close() async {
+    if (!_hasBeenOpened) _isClosed = true;
+    if (_isClosed) return Future<void>.value();
+    _isClosed = true;
+    return Vision.channel.invokeMethod('vision#closeTextDetectorV2');
+  }
+}
+
 ///Class that gives the detected text.
 ///Recognised text hierarchy.
 ///Recognised Text ---> List<TextBlock> (Blocks of text identified in the image).

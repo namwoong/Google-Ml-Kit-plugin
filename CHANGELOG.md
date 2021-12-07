@@ -14,3 +14,7 @@
 
 ## 0.0.8
 * Fix IOS issues
+
+## 0.0.9
+* Support TextDetector V2 for IOS
+* IOS 11 or higher  

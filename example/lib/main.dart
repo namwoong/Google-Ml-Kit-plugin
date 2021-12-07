@@ -1,14 +1,16 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
-import 'package:google_ml_kit_example/NlpDetectorViews/entity_extraction_view.dart';
-import 'package:google_ml_kit_example/NlpDetectorViews/language_translator_view.dart';
-import 'package:google_ml_kit_example/NlpDetectorViews/smart_reply_view.dart';
-import 'package:google_ml_kit_example/VisionDetectorViews/object_detector_view.dart';
+import 'package:google_ml_kit_for_korean_example/NlpDetectorViews/entity_extraction_view.dart';
+import 'package:google_ml_kit_for_korean_example/NlpDetectorViews/language_translator_view.dart';
+import 'package:google_ml_kit_for_korean_example/NlpDetectorViews/smart_reply_view.dart';
+import 'package:google_ml_kit_for_korean_example/VisionDetectorViews/object_detector_view.dart';
 
 import 'NlpDetectorViews/language_identifier_view.dart';
 import 'VisionDetectorViews/detector_views.dart';
 import 'package:flutter/material.dart';
+
+import 'VisionDetectorViews/text_detectorv2_view.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -79,6 +81,11 @@ class Home extends StatelessWidget {
                         featureCompleted: true,
                       ),
                       CustomCard(
+                        'Text Detector V2',
+                        TextDetectorV2View(),
+                        featureCompleted: true,
+                      ),
+                      CustomCard(
                         'Object Detector',
                         ObjectDetectorView(),
                       ),
@@ -96,7 +103,10 @@ class Home extends StatelessWidget {
                     title: const Text("Natural Language"),
                     children: [
                       CustomCard(
-                          'Language Identifier', LanguageIdentifierView()),
+                        'Language Identifier',
+                        LanguageIdentifierView(),
+                        featureCompleted: true,
+                      ),
                       CustomCard(
                           'Language Translator', LanguageTranslatorView()),
                       CustomCard('Entity Extractor', EntityExtractionView()),

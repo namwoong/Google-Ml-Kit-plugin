@@ -17,6 +17,7 @@
     [handlers addObject:[[ImageLabeler alloc] init]];
     [handlers addObject:[[PoseDetector alloc] init]];
     [handlers addObject:[[TextRecognizer alloc] init]];
+    [handlers addObject:[[TextRecognizerV2 alloc] init]];
     
     instance.handlers = [NSMutableDictionary new];
     for (id<Handler> detector in handlers) {

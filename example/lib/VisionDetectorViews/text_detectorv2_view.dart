@@ -4,13 +4,13 @@ import 'package:google_ml_kit_for_korean/google_ml_kit_for_korean.dart';
 import 'camera_view.dart';
 import 'painters/text_detector_painter.dart';
 
-class TextDetectorView extends StatefulWidget {
+class TextDetectorV2View extends StatefulWidget {
   @override
-  _TextDetectorViewState createState() => _TextDetectorViewState();
+  _TextDetectorViewV2State createState() => _TextDetectorViewV2State();
 }
 
-class _TextDetectorViewState extends State<TextDetectorView> {
-  TextDetector textDetector = GoogleMlKit.vision.textDetector();
+class _TextDetectorViewV2State extends State<TextDetectorV2View> {
+  TextDetectorV2 textDetector = GoogleMlKit.vision.textDetectorV2();
   bool isBusy = false;
   CustomPaint? customPaint;
 
@@ -23,7 +23,7 @@ class _TextDetectorViewState extends State<TextDetectorView> {
   @override
   Widget build(BuildContext context) {
     return CameraView(
-      title: 'Text Detector',
+      title: 'Text Detector V2',
       customPaint: customPaint,
       onImage: (inputImage) {
         processImage(inputImage);
@@ -34,9 +34,10 @@ class _TextDetectorViewState extends State<TextDetectorView> {
   Future<void> processImage(InputImage inputImage) async {
     if (isBusy) return;
     isBusy = true;
-    final recognisedText = await textDetector.processImage(inputImage);
-
+    final recognisedText = await textDetector.processImage(inputImage,
+        script: TextRecognitionOptions.DEVANAGIRI);
     print('Found ${recognisedText.blocks.length} textBlocks');
+    print('Found ${recognisedText.text} textBlocks');
     if (inputImage.inputImageData?.size != null &&
         inputImage.inputImageData?.imageRotation != null) {
       final painter = TextDetectorPainter(

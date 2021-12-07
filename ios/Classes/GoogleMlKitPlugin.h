@@ -35,6 +35,9 @@
 @interface PoseDetector : NSObject <Handler>
 @end
 
+@interface TextRecognizerV2 : NSObject <Handler>
+@end
+
 @interface TextRecognizer : NSObject <Handler>
 @end
 

@@ -1,36 +1,42 @@
 
 #import "GoogleMlKitPlugin.h"
 #import <MLKitTextRecognition/MLKitTextRecognition.h>
+#import <MLKitTextRecognitionKorean/MLKKoreanTextRecognizerOptions.h>
 #import <MLKitTextRecognitionCommon/MLKText.h>
 #import <MLKitTextRecognitionCommon/MLKTextBlock.h>
 #import <MLKitTextRecognitionCommon/MLKTextLine.h>
 #import <MLKitTextRecognitionCommon/MLKTextElement.h>
 #import <MLKitTextRecognitionCommon/MLKTextRecognizedLanguage.h>
 
-#define startTextDetector @"vision#startTextDetector"
-#define closeTextDetector @"vision#closeTextDetector"
+#define startTextDetectorV2 @"vision#startTextDetectorV2"
+#define closeTextDetectorV2 @"vision#closeTextDetectorV2"
 
-@implementation TextRecognizer {
+@implementation TextRecognizerV2 {
+    MLKKoreanTextRecognizerOptions *koreanOptions;
     MLKTextRecognizer *textRecognizer;
 }
 
 - (NSArray *)getMethodsKeys {
-    return @[startTextDetector,
-             closeTextDetector];
+    return @[startTextDetectorV2,
+             closeTextDetectorV2];
 }
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
-    if ([call.method isEqualToString:startTextDetector]) {
+    if ([call.method isEqualToString:startTextDetectorV2]) {
         [self handleDetection:call result:result];
-    } else if ([call.method isEqualToString:closeTextDetector]) {
+    } else if ([call.method isEqualToString:closeTextDetectorV2]) {
     } else {
         result(FlutterMethodNotImplemented);
     }
 }
 
 - (void)handleDetection:(FlutterMethodCall *)call result:(FlutterResult)result {
+    koreanOptions = [[MLKKoreanTextRecognizerOptions alloc] init];
+
     MLKVisionImage *image = [MLKVisionImage visionImageFromData:call.arguments[@"imageData"]];
-    textRecognizer = [MLKTextRecognizer textRecognizer];
+    //textRecognizer = [MLKTextRecognizer textRecognizer];
+    textRecognizer = [MLKTextRecognizer textRecognizerWithOptions:koreanOptions];
+    
     [textRecognizer processImage:image
                       completion:^(MLKText *_Nullable visionText, NSError *_Nullable error) {
         if (error) {
